@@ -120,25 +120,24 @@ def pairs_signals(
     -------
     pd.Series of signals: +1 (long spread), -1 (short spread), 0 (flat)
     """
-    signals = pd.Series(0.0, index=zscore.index)
+    z = zscore.to_numpy(dtype=float)
+    n = len(z)
+    signals = np.zeros(n)
     position = 0.0
 
-    for t in zscore.index:
-        z = zscore.loc[t]
-        if np.isnan(z):
-            signals.loc[t] = 0.0
+    for i in range(n):
+        if np.isnan(z[i]):
+            signals[i] = 0.0
             continue
-
         if position == 0:
-            if z < -entry_z:
+            if z[i] < -entry_z:
                 position = 1.0
-            elif z > entry_z:
+            elif z[i] > entry_z:
                 position = -1.0
-        elif position == 1 and z > -exit_z:
+        elif position == 1 and z[i] > -exit_z:
             position = 0.0
-        elif position == -1 and z < exit_z:
+        elif position == -1 and z[i] < exit_z:
             position = 0.0
+        signals[i] = position
 
-        signals.loc[t] = position
-
-    return signals
+    return pd.Series(signals, index=zscore.index)

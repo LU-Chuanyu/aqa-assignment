@@ -86,16 +86,11 @@ def max_drawdown_duration(equity_curve: pd.Series) -> int:
     dd = drawdown_series(equity_curve)
     in_drawdown = (dd < 0).astype(int)
 
-    max_dur = 0
-    current_dur = 0
-    for v in in_drawdown:
-        if v == 1:
-            current_dur += 1
-            max_dur = max(max_dur, current_dur)
-        else:
-            current_dur = 0
-
-    return max_dur
+    # Assign a group label that increments each time we leave a drawdown streak
+    group = (in_drawdown == 0).cumsum()
+    # Count only rows actually in drawdown, then take the longest streak
+    streak_lengths = in_drawdown.groupby(group).sum()
+    return int(streak_lengths.max())
 
 
 # ── 3. Rolling analytics ──────────────────────────────────────────────────────

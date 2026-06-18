@@ -145,12 +145,9 @@ def rolling_correlation(
     """
     Compute rolling Pearson correlation between two return series.
 
-    Returns an array of length len(series_a) − window + 1.
+    Returns an array of the same length as the inputs (NaN-padded for the
+    first ``window − 1`` observations).
     """
-    n = len(series_a)
-    result = np.full(n, np.nan)
-    for i in range(window - 1, n):
-        a = series_a[i - window + 1 : i + 1]
-        b = series_b[i - window + 1 : i + 1]
-        result[i] = float(np.corrcoef(a, b)[0, 1])
-    return result
+    s_a = pd.Series(series_a)
+    s_b = pd.Series(series_b)
+    return s_a.rolling(window).corr(s_b).to_numpy()
