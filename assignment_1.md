@@ -1,8 +1,5 @@
 # Assignment 1 — Introduction to Financial Industry
 
-> Source: `aqa [Assignment 1 ].pdf` (Asia Quant Academy)
-> Companion lecture: `Lecture 1.pptx.pdf` (*Getting into the Quant World*)
->
 > Note: This is an open-ended research assignment. All figures (AUM, headcount, etc.) are publicly available approximations as of FY2024–2025. For grading or quotation, please cross-check with the latest data from each firm's website, SEC Form ADV, Pitchbook, or LinkedIn.
 
 ---
@@ -228,5 +225,3 @@ These are the open questions that came up while completing Q1–Q4 and that dese
 | Performance & rankings | HFR, With Intelligence (formerly HFM), Preqin, Pitchbook, Bloomberg HFND function |
 | Industry news | Bloomberg, Financial Times, Institutional Investor, Hedge Fund Alert, the *Odd Lots* podcast |
 | Interview prep | *Heard on the Street* (Crack); *A Practical Guide to Quantitative Finance Interviews* (Xinfeng Zhou); *150 Most Frequently Asked Questions on Quant Interviews* |
-
-> Reminder: figures change every quarter — please re-validate with the latest publicly disclosed numbers before submission.
